@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Privacy Risk Matrix | IoT & Family</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0a0a0c;
+            --bg-card: #121214;
+            --primary-home: #34d399; /* Verde Esmeralda para representar o Lar */
+            --primary-red: #f87171;
+            --accent-gold: #fbbf24;
+            --text-main: #f3f4f6;
+            --text-dim: #9ca3af;
+            --border-color: #262626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; padding-top: 60px; }
+
+        nav {
+            background: rgba(18, 18, 20, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-home); text-decoration: none; }
+        .logo span { color: var(--text-main); }
+
+        header {
+            text-align: center;
+            padding: 70px 20px 30px;
+            background: radial-gradient(circle at center, rgba(52, 211, 153, 0.08) 0%, transparent 70%);
+        }
+
+        header h1 { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+        header h1 span { color: var(--primary-home); }
+        header p { color: var(--text-dim); font-size: 0.9rem; margin-top: 10px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .main-grid {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { border-color: var(--primary-home); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(52, 211, 153, 0.05); }
+
+        .card-header {
+            background: rgba(52, 211, 153, 0.05);
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body { padding: 20px; flex-grow: 1; }
+        .card-body h3 { font-size: 1.1rem; margin-bottom: 10px; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .card-body h3 i { color: var(--primary-home); font-size: 1rem; }
+        .card-body p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px; }
+
+        .risk-data {
+            background: #000;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--primary-red);
+        }
+
+        .risk-data b { color: var(--primary-red); }
+        .risk-data span { color: var(--accent-gold); }
+
+        .impact-level { font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; background: rgba(248, 113, 113, 0.1); color: var(--primary-red); border: 1px solid var(--primary-red); }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border-color); color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">HOME_<span>SAFE_v1</span></a>
+        <div style="font-size: 0.7rem;"><i class="fas fa-home"></i> PRIVACY_MODE: <span style="color: var(--accent-gold);">MONITORED</span></div>
+    </nav>
+
+    <header>
+        <h1>Ameaças na <span>Smart Home</span></h1>
+        <p>Análise técnica de como a tecnologia doméstica pode expor áudio, vídeo e hábitos da sua família para a internet.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-01 <span class="impact-level">PRIVATE DATA</span></div>
+            <div class="card-body">
+                <h3>Assistentes de Voz (Alexa/Google)</h3>
+                <p>Microfones "sempre ativos" que podem gravar conversas privadas acidentalmente e enviar para a nuvem.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Voice Sniffing / Cloud Leak<br>
+                    <span>EXPOSTO:</span> Áudio ambiente e rotinas.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-02 <span class="impact-level">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Babás Eletrônicas Wi-Fi</h3>
+                <p>Dispositivos com segurança fraca que permitem que estranhos acessem o vídeo e falem pelo alto-falante.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Default Creds / P2P Vulnerability<br>
+                    <span>EXPOSTO:</span> Imagens do quarto dos filhos.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-03 <span class="impact-level">PRIVACY</span></div>
+            <div class="card-body">
+                <h3>Aspiradores Robô (Lidar/Câmera)</h3>
+                <p>Mapeiam a planta exata da sua casa e, se hackeados, podem transmitir imagens em tempo real do chão.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Map Data Export / Camera Hack<br>
+                    <span>EXPOSTO:</span> Layout da casa e fotos do interior.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-04 <span class="impact-level">SECURITY</span></div>
+            <div class="card-body">
+                <h3>Fechaduras Inteligentes</h3>
+                <p>Abertura remota via app. Vulnerabilidades em APIs podem permitir que ladrões destranquem a porta via Wi-Fi.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> API Bypass / Bluetooth Replay<br>
+                    <span>EXPOSTO:</span> Acesso físico à residência.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-05 <span class="impact-level">DATA LEAK</span></div>
+            <div class="card-body">
+                <h3>Smart TVs (Câmera/Microfone)</h3>
+                <p>Smart TVs coletam hábitos de visualização e, se infectadas, podem atuar como espiões na sala de estar.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Malicious Apps / Unpatched OS<br>
+                    <span>EXPOSTO:</span> Conversas e comportamentos.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-06 <span class="impact-level">LIFESTYLE</span></div>
+            <div class="card-body">
+                <h3>Lâmpadas Inteligentes</h3>
+                <p>Ponto de entrada para a rede Wi-Fi. Uma lâmpada hackeada pode dar acesso ao seu computador pessoal.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Wi-Fi Credentials Leak (Zigbee/BT)<br>
+                    <span>EXPOSTO:</span> Senha da rede Wi-Fi principal.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-07 <span class="impact-level">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Câmeras de Segurança Pet</h3>
+                <p>Modelos baratos com servidores na China que frequentemente expõem streams de vídeo em sites públicos.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Insecure Cloud Storage<br>
+                    <span>EXPOSTO:</span> Rotina diária e presença na casa.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-08 <span class="impact-level">DATA LEAK</span></div>
+            <div class="card-body">
+                <h3>Geladeiras Inteligentes</h3>
+                <p>Podem expor suas contas de e-mail e calendário se o login for feito diretamente na tela do aparelho.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Account Token Hijacking<br>
+                    <span>EXPOSTO:</span> Agenda familiar e e-mails pessoais.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-09 <span class="impact-level">SECURITY</span></div>
+            <div class="card-body">
+                <h3>Interfones com Vídeo (Ring/Nest)</h3>
+                <p>Registram quem visita sua casa e horários de entrada/saída, criando um log de presença vulnerável.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Credential Stuffing<br>
+                    <span>EXPOSTO:</span> Histórico de visitas e ausência.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-10 <span class="impact-level">HIGH RISK</span></div>
+            <div class="card-body">
+                <h3>Brinquedos Conectados (IoT)</h3>
+                <p>Bonecas ou robôs com microfones que permitem que terceiros conversem com a criança remotamente.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Bluetooth sem Pareamento Seguro<br>
+                    <span>EXPOSTO:</span> Comunicação direta com menores.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-11 <span class="impact-level">PRIVACY</span></div>
+            <div class="card-body">
+                <h3>Smart Mirrors (Espelhos)</h3>
+                <p>Espelhos com câmeras para "provador virtual" podem vazar imagens íntimas se o sistema for invadido.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Firmware Backdoor<br>
+                    <span>EXPOSTO:</span> Imagens privadas em banheiros.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-12 <span class="impact-level">DATA</span></div>
+            <div class="card-body">
+                <h3>Balanças Inteligentes</h3>
+                <p>Enviam dados de saúde (peso, gordura) para apps. Se o banco de dados do fabricante vazar, sua saúde é exposta.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Database Breach (Fabricante)<br>
+                    <span>EXPOSTO:</span> Biometria e dados de saúde.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-13 <span class="impact-level">SECURITY</span></div>
+            <div class="card-body">
+                <h3>Ar-Condicionado Wi-Fi</h3>
+                <p>Permite monitorar quando você está em casa pelo consumo de energia e status de funcionamento.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Unencrypted Traffic<br>
+                    <span>EXPOSTO:</span> Informação de "Casa Vazia".
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-14 <span class="impact-level">HIGH RISK</span></div>
+            <div class="card-body">
+                <h3>NAS (Armazenamento Doméstico)</h3>
+                <p>Se configurado para acesso remoto sem VPN, expõe todas as fotos da família e documentos para a internet.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Port Forwarding Exploit<br>
+                    <span>EXPOSTO:</span> Arquivo digital completo da família.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-15 <span class="impact-level">PRIVACY</span></div>
+            <div class="card-body">
+                <h3>Sensores de Sono Inteligentes</h3>
+                <p>Monitores sob o colchão que coletam dados íntimos de batimentos e respiração, enviados para a nuvem.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Cloud Profiling<br>
+                    <span>EXPOSTO:</span> Hábitos de sono e saúde cardíaca.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-16 <span class="impact-level">SECURITY</span></div>
+            <div class="card-body">
+                <h3>Portão de Garagem Wi-Fi</h3>
+                <p>Controles via app que utilizam RF ou Wi-Fi vulneráveis a ataques de interceptação de sinal (Sniffing).</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Signal Replay Attack<br>
+                    <span>EXPOSTO:</span> Acesso total à garagem e casa.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-17 <span class="impact-level">DATA LEAK</span></div>
+            <div class="card-body">
+                <h3>Máquinas de Lavar/Secar Wi-Fi</h3>
+                <p>Muitas vezes usadas para ataques DDoS (robôs) por terem processadores fracos e sem firewall.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Mirai Botnet Infection<br>
+                    <span>EXPOSTO:</span> Uso do seu IP para crimes virtuais.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-18 <span class="impact-level">PRIVACY</span></div>
+            <div class="card-body">
+                <h3>Luzes de Natal / LED RGB Wi-Fi</h3>
+                <p>Controladores genéricos baratos que pedem permissão total à localização e contatos no celular via app.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Malicious Mobile App<br>
+                    <span>EXPOSTO:</span> Localização GPS e Agenda.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-19 <span class="impact-level">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Extensores de Wi-Fi de Baixo Custo</h3>
+                <p>Podem atuar como um "Man-in-the-Middle", capturando todo o tráfego que passa por eles antes de enviar ao roteador.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Traffic Interception<br>
+                    <span>EXPOSTO:</span> Todo o tráfego não criptografado.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #HOME-20 <span class="impact-level">HIGH RISK</span></div>
+            <div class="card-body">
+                <h3>Sistemas de Irrigação Wi-Fi</h3>
+                <p>Se hackeados, podem causar danos físicos (inundação) ou desperdício de recursos, além de revelar presença.</p>
+                <div class="risk-data">
+                    <span>VETOR:</span> Unauth Command Injection<br>
+                    <span>EXPOSTO:</span> Danos materiais e gastos financeiros.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        HOME_SEC_AUDIT_2026 | PROTECT YOUR FAMILY | DEIVID_G_SANTOS
+    </footer>
+
+</body>
+</html>

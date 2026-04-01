@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public & Travel Threat Matrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #050505;
+            --bg-card: #111111;
+            --primary-travel: #3b82f6; /* Azul Viagem */
+            --primary-red: #ff3333;
+            --accent-yellow: #facc15;
+            --text-main: #f9fafb;
+            --text-dim: #9ca3af;
+            --border-color: #262626;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.4; padding-top: 60px; }
+
+        nav {
+            background: rgba(17, 17, 17, 0.98);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-travel); text-decoration: none; }
+        
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(180deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+        }
+
+        header h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; }
+        header h1 span { color: var(--primary-travel); }
+        header p { color: var(--text-dim); margin-top: 10px; font-size: 0.9rem; }
+
+        .main-grid {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { border-color: var(--primary-travel); transform: translateY(-3px); }
+
+        .card-header {
+            padding: 10px 20px;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-body { padding: 20px; flex-grow: 1; }
+        .card-body h3 { font-size: 1.1rem; margin-bottom: 8px; color: #fff; }
+        .card-body p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px; }
+
+        .vector-box {
+            background: #000;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--primary-red);
+        }
+
+        .vector-box b { color: var(--primary-red); }
+        .vector-box i { color: var(--accent-yellow); font-style: normal; }
+
+        .tag-risk { font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--primary-red); color: var(--primary-red); }
+
+        footer { text-align: center; padding: 50px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">PUBLIC_<span>SHIELD_v2</span></a>
+        <div style="font-size: 0.7rem;"><i class="fas fa-globe"></i> STATUS: <span style="color: var(--primary-travel);">IN_TRANSIT</span></div>
+    </nav>
+
+    <header>
+        <h1>Segurança em <span>Movimento</span></h1>
+        <p>Vulnerabilidades em locais públicos, transportes e viagens. Proteja seus dispositivos fora da zona de conforto.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-01 <span class="tag-risk">DATA THEFT</span></div>
+            <div class="card-body">
+                <h3>Wi-Fi Grátis "Evil Twin"</h3>
+                <p>Hotspots falsos com nomes como "Shopping_Gratis" que capturam todo o tráfego do seu celular.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Man-in-the-Middle (MITM)<br>
+                    <i>RISCO:</i> Roubo de senhas e cookies de sessão.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-02 <span class="tag-risk">MALWARE</span></div>
+            <div class="card-body">
+                <h3>Juice Jacking (USB Público)</h3>
+                <p>Portas USB de carregamento que, além de energia, transmitem malware ou extraem fotos do aparelho.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Data Sync via USB Port<br>
+                    <i>RISCO:</i> Injeção de Trojan / Acesso a arquivos.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-03 <span class="tag-risk">PRIVACY</span></div>
+            <div class="card-body">
+                <h3>Smart TVs de Hotel</h3>
+                <p>TVs que mantêm o login da sua Netflix ou YouTube ativos, permitindo que o próximo hóspede acesse sua conta.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Session Persistence<br>
+                    <i>RISCO:</i> Exposição de dados de conta pessoal.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-04 <span class="tag-risk">CONTACTLESS</span></div>
+            <div class="card-body">
+                <h3>Aproximação NFC (Contactless)</h3>
+                <p>Maquininhas de cartão escondidas que "encostam" em bolsos ou bolsas para realizar micro-pagamentos.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> NFC Radio Sniffing<br>
+                    <i>RISCO:</i> Transações financeiras não autorizadas.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-05 <span class="tag-risk">SURVEILLANCE</span></div>
+            <div class="card-body">
+                <h3>Shoulder Surfing (Espionagem)</h3>
+                <p>Pessoas observando por cima do ombro enquanto você digita senhas ou o PIN de desbloqueio.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Visual Observation<br>
+                    <i>RISCO:</i> Comprometimento de credenciais bancárias.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-06 <span class="tag-risk">TRACKING</span></div>
+            <div class="card-body">
+                <h3>Bluetooth Beacon Tracking</h3>
+                <p>Lojas e centros urbanos que usam seu Bluetooth ativo para rastrear seus passos exatos no mapa.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> BT Advertising Packets<br>
+                    <i>RISCO:</i> Perfilamento de comportamento e localização.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-07 <span class="tag-risk">MALICIOUS URL</span></div>
+            <div class="card-body">
+                <h3>QR Code Malicioso (Menu)</h3>
+                <p>Adesivos de QR Code colados sobre os originais que levam a sites de phishing ou download de malware.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Quishing (QR Phishing)<br>
+                    <i>RISCO:</i> Instalação de apps espiões.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-08 <span class="tag-risk">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Inspeção de Dispositivo</h3>
+                <p>Viagens internacionais onde autoridades podem solicitar o desbloqueio do celular, expondo conversas e fotos.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Forced Physical Access<br>
+                    <i>RISCO:</i> Perda total de privacidade de dados.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-09 <span class="tag-risk">SPYWARE</span></div>
+            <div class="card-body">
+                <h3>Câmeras Ocultas em Acomodações</h3>
+                <p>Mini-câmeras disfarçadas em carregadores, relógios ou detectores de fumaça em quartos alugados.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Hidden IoT Devices<br>
+                    <i>RISCO:</i> Gravação não autorizada de momentos íntimos.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-10 <span class="tag-risk">PHYSICAL</span></div>
+            <div class="card-body">
+                <h3>Furto com Celular Desbloqueado</h3>
+                <p>Criminosos que esperam você usar o GPS ou tirar foto para tomar o aparelho enquanto a tela está ativa.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Grab-and-Run Attack<br>
+                    <i>RISCO:</i> Acesso direto a apps de banco abertos.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-11 <span class="tag-risk">NETWORK</span></div>
+            <div class="card-body">
+                <h3>Captive Portal Vulnerabilities</h3>
+                <p>Sistemas de login de Wi-Fi de bordo que podem ser explorados para invadir outros passageiros na mesma rede.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Intra-Client Communication<br>
+                    <i>RISCO:</i> Scanning de rede entre dispositivos.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-12 <span class="tag-risk">SNOOPING</span></div>
+            <div class="card-body">
+                <h3>AirDrop / Quick Share Aberto</h3>
+                <p>Envio de arquivos maliciosos ou imagens ofensivas por pessoas próximas via transferência direta.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Peer-to-Peer Discovery<br>
+                    <i>RISCO:</i> Assédio ou recebimento de exploits.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-13 <span class="tag-risk">SOCIAL ENG.</span></div>
+            <div class="card-body">
+                <h3>Pesquisas de Rua "Inofensivas"</h3>
+                <p>Pessoas pedindo dados como nome, data de nasc. e e-mail para sorteios, coletando bases para golpes.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Human Social Engineering<br>
+                    <i>RISCO:</i> Roubo de identidade (Identity Theft).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-14 <span class="tag-risk">DATA RESIDUE</span></div>
+            <div class="card-body">
+                <h3>Sincronização de Infotainment</h3>
+                <p>Conectar o celular ao Bluetooth do carro alugado e deixar contatos e histórico de GPS gravados no veículo.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Sync Profile Storage<br>
+                    <i>RISCO:</i> Vazamento de histórico de locais visitados.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-15 <span class="tag-risk">LOCATION</span></div>
+            <div class="card-body">
+                <h3>Metadados de Fotos (EXIF)</h3>
+                <p>Tirar fotos e postar em tempo real com metadados de GPS, revelando sua localização exata para stalkers.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Image Metadata Leak<br>
+                    <i>RISCO:</i> Rastreamento físico em tempo real.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-16 <span class="tag-risk">SPOOFING</span></div>
+            <div class="card-body">
+                <h3>AirTags / Rastreadores em Malas</h3>
+                <p>Criminosos que plantam um AirTag na sua mochila para saber em qual hotel você está hospedado.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Stealth Physical Tracking<br>
+                    <i>RISCO:</i> Sequestro ou roubo planejado no hotel.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-17 <span class="tag-risk">BIOMETRY</span></div>
+            <div class="card-body">
+                <h3>FaceID / Fingerprint Dormindo</h3>
+                <p>Uso da biometria da vítima enquanto ela dorme ou está desacordada para desbloquear o celular.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Physical Biometric Bypass<br>
+                    <i>RISCO:</i> Acesso total ao dispositivo sem consentimento.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-18 <span class="tag-risk">NETWORK</span></div>
+            <div class="card-body">
+                <h3>Auto-Connect a Wi-Fi Conhecido</h3>
+                <p>Dispositivos configurados para conectar automaticamente em "Starbucks" ou "Airport_Free", facilitando o ataque Evil Twin.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Probe Request Sniffing<br>
+                    <i>RISCO:</i> Conexão automática em redes hostis.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-19 <span class="tag-risk">PHYSICAL</span></div>
+            <div class="card-body">
+                <h3>Troca de SIM Card (SIM Swap)</h3>
+                <p>Aproveitar o furto do celular para retirar o chip e usar em outro aparelho para receber SMS de recuperação de conta.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Physical SIM Access<br>
+                    <i>RISCO:</i> Invasão de contas via 2FA por SMS.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #PUB-20 <span class="tag-risk">CENSORSHIP</span></div>
+            <div class="card-body">
+                <h3>Keyloggers em Cyber Cafés</h3>
+                <p>Usar computadores públicos (lobby de hotel/cyber café) para acessar e-mails ou bancos.</p>
+                <div class="vector-box">
+                    <b>VETOR:</b> Hardware/Software Keylogging<br>
+                    <i>RISCO:</i> Captura de todas as senhas digitadas.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        PUBLIC_SPACE_SECURITY_2026 | MOBILITY_SAFETY | DEIVID_G_SANTOS
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Footprint & Social Risk Matrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #08070b;
+            --bg-card: #13111a;
+            --primary-social: #ec4899; /* Rosa Intenso para Social/Exposição */
+            --primary-red: #f43f5e;
+            --accent-blue: #3b82f6;
+            --text-main: #f1f1f1;
+            --text-dim: #a1a1aa;
+            --border-color: #27272a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; padding-top: 60px; }
+
+        nav {
+            background: rgba(19, 17, 26, 0.96);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-social); text-decoration: none; }
+        
+        header {
+            text-align: center;
+            padding: 70px 20px 40px;
+            background: radial-gradient(circle at center, rgba(236, 72, 153, 0.1) 0%, transparent 70%);
+        }
+
+        header h1 { font-size: 2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+        header h1 span { color: var(--primary-social); }
+        header p { color: var(--text-dim); margin-top: 10px; font-size: 0.9rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .main-grid {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { border-color: var(--primary-social); transform: scale(1.02); }
+
+        .card-header {
+            padding: 10px 20px;
+            background: rgba(236, 72, 153, 0.05);
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-social);
+        }
+
+        .card-body { padding: 20px; flex-grow: 1; }
+        .card-body h3 { font-size: 1.1rem; margin-bottom: 10px; color: #fff; }
+        .card-body p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px; }
+
+        .risk-tag { font-size: 0.65rem; padding: 2px 8px; border-radius: 4px; background: rgba(244, 63, 94, 0.1); color: var(--primary-red); border: 1px solid var(--primary-red); }
+
+        .prevention-box {
+            background: #09090b;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--accent-blue);
+        }
+
+        .prevention-box b { color: var(--accent-blue); }
+        .prevention-box span { color: var(--primary-red); }
+
+        footer { text-align: center; padding: 50px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">SOCIAL_<span>DEFENDER_v1</span></a>
+        <div style="font-size: 0.7rem; color: var(--accent-blue);">BROWSER_SHIELD: ACTIVE</div>
+    </nav>
+
+    <header>
+        <h1>Exposição Digital e <span>Privacidade</span></h1>
+        <p>Análise de riscos sobre compartilhamento excessivo em redes sociais, exposição familiar e perigos de navegação em sites não confiáveis.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-01 <span class="risk-tag">STALKING RISK</span></div>
+            <div class="card-body">
+                <h3>Lives de Rotina Diária</h3>
+                <p>Contar horários de acordar, caminhos feitos e hábitos em tempo real permite que criminosos prevejam sua localização exata.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Padrões de vida (Habit Mapping).<br>
+                    <span>RISCO:</span> Sequestro ou assalto planejado.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-02 <span class="risk-tag">BURGLARY RISK</span></div>
+            <div class="card-body">
+                <h3>Tour pela Casa / Cenários</h3>
+                <p>Mostrar detalhes internos da casa revela sistemas de segurança (ou falta deles), marcas de eletrônicos e pontos de entrada.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Inventário de bens e vulnerabilidades.<br>
+                    <span>RISCO:</span> Furto direcionado por valor.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-03 <span class="risk-tag">CHILD SAFETY</span></div>
+            <div class="card-body">
+                <h3>Sharenting (Exposição Infantil)</h3>
+                <p>Postar fotos de crianças com uniformes escolares ou em locais frequentados gera dados permanentes e perigosos para menores.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Identidade e localização do menor.<br>
+                    <span>RISCO:</span> Aliciamento e Deepfakes.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-04 <span class="risk-tag">MALWARE</span></div>
+            <div class="card-body">
+                <h3>Resultados de Busca Patrocinados</h3>
+                <p>Clicar em links no topo do Google que parecem oficiais, mas levam a sites clonados para roubo de dados.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Credenciais e dados bancários.<br>
+                    <span>RISCO:</span> Phishing de alta fidelidade.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-05 <span class="risk-tag">TRACKING</span></div>
+            <div class="card-body">
+                <h3>Check-in em Tempo Real</h3>
+                <p>Marcar o restaurante ou academia enquanto ainda está lá informa ao mundo que sua casa está vazia naquele momento.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Status de ocupação residencial.<br>
+                    <span>RISCO:</span> Invasão domiciliar (Housebreaking).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-06 <span class="risk-tag">RANSOMWARE</span></div>
+            <div class="card-body">
+                <h3>Softwares Piratas / "Cracks"</h3>
+                <p>Acessar sites desconhecidos para baixar filmes ou programas "grátis" que escondem scripts de criptografia de dados.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Arquivos pessoais do sistema.<br>
+                    <span>RISCO:</span> Sequestro de dados (Ransomware).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-07 <span class="risk-tag">IDENTITY THEFT</span></div>
+            <div class="card-body">
+                <h3>Cadastros para "Ver Conteúdo"</h3>
+                <p>Sites que exigem CPF, e-mail e telefone para liberar um download ou artigo. Base de dados vendida para golpistas.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Dados Pessoais (PII).<br>
+                    <span>RISCO:</span> Golpes de Engenharia Social (WhatsApp).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-08 <span class="risk-tag">SPYWARE</span></div>
+            <div class="card-body">
+                <h3>Pop-ups de "Permitir Notificações"</h3>
+                <p>Ao clicar em 'Sim' em sites maliciosos, o browser passa a injetar anúncios e links de vírus diretamente no seu Windows/Mac.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Área de Notificação do Sistema.<br>
+                    <span>RISCO:</span> Adware persistente e Phishing.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-09 <span class="risk-tag">CORP RISK</span></div>
+            <div class="card-body">
+                <h3>Fotos de Crachás ou Telas</h3>
+                <p>Selfies no escritório que mostram post-its com senhas ou o crachá com QR Code visível.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Acesso à infraestrutura da empresa.<br>
+                    <span>RISCO:</span> Invasão corporativa (Entry Point).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-10 <span class="risk-tag">PRIVACY</span></div>
+            <div class="card-body">
+                <h3>Aceitar Todos os Cookies</h3>
+                <p>Navegação em sites aleatórios que criam um perfil psicográfico completo de seus interesses e vulnerabilidades psicológicas.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Perfil comportamental.<br>
+                    <span>RISCO:</span> Manipulação política e comercial.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-11 <span class="risk-tag">DATA MINING</span></div>
+            <div class="card-body">
+                <h3>"Com qual celebridade você parece?"</h3>
+                <p>Apps e quizzes que pedem acesso ao seu perfil social para minerar dados de amigos e fotos privadas.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Grafo social e permissões de app.<br>
+                    <span>RISCO:</span> Vazamento massivo de dados (Cambridge Analytica style).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-12 <span class="risk-tag">HIGH VALUE TARGET</span></div>
+            <div class="card-body">
+                <h3>Fotos de Compras de Alto Valor</h3>
+                <p>Postar caixas de eletrônicos caros ou carros novos atrai a atenção de grupos especializados em roubos de luxo.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Bens de alta liquidez.<br>
+                    <span>RISCO:</span> Roubo sob encomenda.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-13 <span class="risk-tag">SCAM</span></div>
+            <div class="card-body">
+                <h3>Avisos de "Seu PC está Infectado"</h3>
+                <p>Scripts em sites desconhecidos que travam o navegador e mostram um número de suporte falso para roubar dinheiro.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Controle remoto do computador.<br>
+                    <span>RISCO:</span> Extorsão financeira imediata.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-14 <span class="risk-tag">FRAUD</span></div>
+            <div class="card-body">
+                <h3>Passaportes e Passagens em Fotos</h3>
+                <p>Códigos de barras e números de documentos em fotos de viagem podem ser usados para cancelar voos ou roubar milhas.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Sistemas de reserva e ID.<br>
+                    <span>RISCO:</span> Sequestro de viagem e fraude de ID.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-15 <span class="risk-tag">UNSECURE</span></div>
+            <div class="card-body">
+                <h3>Inserir Dados em Sites HTTP</h3>
+                <p>Sites antigos ou maliciosos sem criptografia SSL. Tudo o que você digita é enviado em texto plano pela rede.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Tráfego de rede local.<br>
+                    <span>RISCO:</span> Interceptação de senhas (Sniffing).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-16 <span class="risk-tag">EAVESDROPPING</span></div>
+            <div class="card-body">
+                <h3>Áudio de Fundo em Gravações</h3>
+                <p>Fazer stories ou lives onde se ouve discussões de negócios ou detalhes bancários ao fundo.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Informação confidencial auditiva.<br>
+                    <span>RISCO:</span> Espionagem industrial ou pessoal.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-17 <span class="risk-tag">REDIRECT RISK</span></div>
+            <div class="card-body">
+                <h3>Links bit.ly / t.co Desconhecidos</h3>
+                <p>Clicar em links encurtados em comentários de redes sociais que escondem o destino real (site malicioso).</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Browser Exploitation Frameworks.<br>
+                    <span>RISCO:</span> Infecção por Drive-by Download.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-18 <span class="risk-tag">REPUTATION</span></div>
+            <div class="card-body">
+                <h3>Discussões Públicas Agressivas</h3>
+                <p>Atrair a atenção de "trolls" ou grupos radicais que podem fazer "Doxing" (revelar seus dados privados por vingança).</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Vida privada e profissional.<br>
+                    <span>RISCO:</span> Perda de emprego e perseguição física.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-19 <span class="risk-tag">FINANCIAL RISK</span></div>
+            <div class="card-body">
+                <h3>Extensões de Navegador Maliciosas</h3>
+                <p>Instalar extensões que prometem cupons, mas que leem todo o seu histórico de navegação e senhas salvas.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> DOM do navegador e Keystrokes.<br>
+                    <span>RISCO:</span> Roubo de contas (Takeover).
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #SOC-20 <span class="risk-tag">SECURITY BYPASS</span></div>
+            <div class="card-body">
+                <h3>Nomes de Pets em Redes Sociais</h3>
+                <p>Revelar nomes de animais de estimação que são frequentemente usados como "Pergunta de Segurança" em bancos e e-mails.</p>
+                <div class="prevention-box">
+                    <b>ALVO:</b> Mecanismos de recuperação de conta.<br>
+                    <span>RISCO:</span> Reset de senha por terceiros.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        DIGITAL_CITIZENSHIP_2026 | BE_SMART_ONLINE | DEIVID_G_SANTOS
+    </footer>
+
+</body>
+</html>

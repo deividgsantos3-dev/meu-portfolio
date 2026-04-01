@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Hub | Threat Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #05070a;
+            --bg-card: #0d1117;
+            --primary-red: #ff4d4d;
+            --primary-green: #00ff41;
+            --accent-blue: #00d4ff;
+            --text-main: #e6edf3;
+            --text-dim: #8b949e;
+            --border-color: #30363d;
+            --warning-border: #ffc107;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: rgba(13, 17, 23, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            text-decoration: none;
+        }
+
+        header {
+            text-align: center;
+            padding: 140px 20px 60px;
+            background: linear-gradient(180deg, rgba(255, 77, 77, 0.08) 0%, transparent 100%);
+        }
+
+        header h1 { font-size: 2.5rem; font-weight: 900; margin-bottom: 15px; text-transform: uppercase; }
+        header h1 span { color: var(--primary-red); }
+
+        .main-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { border-color: var(--primary-red); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(255, 77, 77, 0.1); }
+
+        .card-header {
+            background: rgba(255, 77, 77, 0.05);
+            padding: 15px 25px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--primary-red);
+        }
+
+        .card-body { padding: 25px; }
+        .card-body p { margin-bottom: 15px; font-size: 0.95rem; }
+        .card-body strong { color: var(--accent-blue); }
+
+        .email-box {
+            background: #010409;
+            border: 1px dashed var(--warning-border);
+            border-radius: 8px;
+            padding: 18px;
+            margin: 15px 0;
+            font-size: 0.85rem;
+            color: #d1d5db;
+        }
+
+        .email-box b { color: var(--warning-border); }
+        .email-box font { color: #58a6ff; text-decoration: underline; cursor: pointer; }
+
+        .alert-footer {
+            display: flex;
+            gap: 12px;
+            background: rgba(255, 77, 77, 0.1);
+            padding: 12px;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary-red);
+            font-size: 0.85rem;
+        }
+
+        .alert-footer i { color: var(--primary-red); margin-top: 3px; }
+
+        footer { text-align: center; padding: 60px; border-top: 1px solid var(--border-color); color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+
+        @media (max-width: 480px) { .main-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">SEC_<span>THREAT_LOG</span></a>
+        <div style="font-size: 0.7rem; color: var(--text-dim);">SYSTEM_CORE: ACTIVE</div>
+    </nav>
+
+    <header>
+        <h1>Anatomia de <span>Ataques</span> por E-mail</h1>
+        <p>Catálogo técnico completo das 18 principais modalidades de invasão utilizadas por cibercriminosos.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">01. Phishing</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Envio de e-mails fraudulentos que imitam sites de bancos ou empresas para roubar senhas e dados pessoais.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> 🎉 Grande Promoção: 50% de Desconto!<br>
+                    "Olá, aproveite 50% de desconto. <font>Clique aqui</font> para ativar seu cupom."
+                </div>
+                <div class="alert-footer"><i class="fas fa-exclamation-triangle"></i><div>O link leva a um site falso para capturar credenciais.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">02. Spear Phishing</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Ataque direcionado a um indivíduo específico, simulando ser um colega ou chefe após pesquisa prévia.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Urgente - Verificação de pagamento.<br>
+                    "Oi João, revise a fatura no link: <font>Revisar fatura</font>. Obrigado, Carlos (Seu Chefe)"
+                </div>
+                <div class="alert-footer"><i class="fas fa-bullseye"></i><div>O invasor usa nomes reais para ganhar confiança indevida.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">03. Business Email Compromise (BEC)</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> O criminoso finge ser um executivo (Golpe do CEO) solicitando transferências financeiras urgentes.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Transferência urgente necessária.<br>
+                    "Ana, transfira R$ 50.000 para a conta abaixo imediatamente. Att, Jorge (CEO)"
+                </div>
+                <div class="alert-footer"><i class="fas fa-user-tie"></i><div>Explora a hierarquia e o senso de urgência para pular processos de segurança.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">04. Ataque com Anexos Maliciosos</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> O e-mail contém arquivos (.exe, .zip) que instalam malware ou roubam dados ao serem abertos.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Fatura Pendente - URGENTE.<br>
+                    "Caro Cliente, segue anexo o boleto: <font>[Baixar Fatura.zip]</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-file-download"></i><div>O arquivo .zip oculta um executável que infecta o sistema.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">05. Ransomware via E-mail</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Malware que criptografa os arquivos da vítima e exige resgate em dinheiro.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Instruções de Renovação de Licença.<br>
+                    "Sua licença expirou. Baixe o arquivo de renovação: <font>Renovar Licença</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-lock"></i><div>Pode paralisar toda a operação da empresa até o pagamento do resgate.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">06. Vírus e Worms via E-mail</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Malwares que se espalham automaticamente para todos os seus contatos após a infecção.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Vídeo Exclusivo - Veja antes de todos!<br>
+                    "Achei esse vídeo incrível. <font>[Baixar vídeo.exe]</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-bug"></i><div>Arquivos .exe disfarçados de mídia são vetores críticos de vírus.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">07. Ataque de Engenharia Social</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Manipulação emocional (medo ou ajuda) para levar a vítima a transferir dinheiro.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Ajuda urgente - Estou preso na estrada.<br>
+                    "Fui roubado e estou sem acesso ao banco. Pode transferir R$ 5.000?"
+                </div>
+                <div class="alert-footer"><i class="fas fa-users-cog"></i><div>Explora a empatia e a confiança entre amigos ou colegas.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">08. Ataque de Spoofing</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Falsificação do endereço de remetente para parecer que o e-mail vem de uma fonte oficial.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Notificação de segurança importante do banco.<br>
+                    "Detectamos tentativa de login suspeita. <font>Clique aqui</font> para entrar."
+                </div>
+                <div class="alert-footer"><i class="fas fa-mask"></i><div>Sempre verifique o domínio real clicando no nome do remetente.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">09. Clone Phishing</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Cópia idêntica de um e-mail legítimo enviado anteriormente, mas com links trocados por maliciosos.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Atualização de Política de Privacidade.<br>
+                    "Conforme informado, baixe o novo documento: <font>Baixar política</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-copy"></i><div>A familiaridade com o conteúdo anterior faz o usuário baixar a guarda.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">10. Whaling</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Ataque de Phishing focado em "peixes grandes" (CEOs, CFOs) para roubo de segredos industriais.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Confirmação de Transação Financeira Urgente.<br>
+                    "Autorize a transferência de R$ 200.000 para o parceiro internacional: <font>Autorizar</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-fish"></i><div>Visa alvos de alto escalão com grandes responsabilidades financeiras.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">11. Homógrafos de Domínio</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Uso de caracteres internacionais que parecem letras normais (ex: 'á' em vez de 'a') para criar sites falsos.</p>
+                <div class="email-box">
+                    <b>Link:</b> https://www.páypal.com/segurança<br>
+                    O 'á' redireciona para um servidor do hacker, não para o PayPal original.
+                </div>
+                <div class="alert-footer"><i class="fas fa-font"></i><div>Visualmente idêntico, tecnicamente um domínio completamente diferente.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">12. Credential Stuffing</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Tentativa automatizada de usar logins vazados de outros sites no seu e-mail corporativo ou banco.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Alerta de login suspeito.<br>
+                    "Redefina sua senha imediatamente: <font>Redefinir senha</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-key"></i><div>Invasores aproveitam que usuários repetem a mesma senha em vários serviços.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">13. Atualizações Falsas de Software</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> E-mails que pedem para atualizar navegadores ou plugins para "corrigir falhas", mas instalam vírus.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Atualização crítica do navegador necessária.<br>
+                    "Para continuar usando nossos serviços, atualize agora: <font>Atualizar</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-arrow-up"></i><div>Sempre atualize softwares pelos canais oficiais (Chrome Settings, etc).</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">14. Sextortion (Extorsão Sexual)</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Alegação falsa de posse de vídeos íntimos da vítima, exigindo pagamento em Bitcoin.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Eu tive acesso ao seu celular!<br>
+                    "Envie 0.5 BTC para a carteira ou divulgarei suas fotos para seus contatos."
+                </div>
+                <div class="alert-footer"><i class="fas fa-user-slash"></i><div>Tática de medo puro. Raramente possuem qualquer dado real da vítima.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">15. QR Codes Maliciosos</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Envio de QR Codes que levam a páginas de login falsas ou downloads automáticos de malware.</p>
+                <div class="email-box">
+                    <b>Corpo:</b> "Escaneie o código abaixo para evitar o bloqueio da sua conta."<br>
+                    [QR CODE IMAGEM]
+                </div>
+                <div class="alert-footer"><i class="fas fa-qrcode"></i><div>Difícil de analisar por filtros de e-mail comuns.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">16. Ataques Baseados em Emoções</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Uso de medo, curiosidade ou pânico para forçar uma ação impensada da vítima.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Seu nome está em um escândalo!<br>
+                    "Confira os detalhes no link antes que viralize: <font>Ver detalhes</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-heart-broken"></i><div>O sequestro emocional anula o pensamento racional de segurança.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">17. Fake News e Conspirações</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Disseminação de mentiras chocantes para atrair cliques para sites infectados.</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Governo esconde verdade chocante.<br>
+                    "Veja o que ninguém quer que você saiba: <font>Descubra a verdade</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-newspaper"></i><div>Geralmente vinculado a sites que roubam dados de navegação (cookies).</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">18. Ofertas Impossíveis</div>
+            <div class="card-body">
+                <p><strong>Descrição:</strong> Prêmios, loterias ou heranças de parentes desconhecidos que exigem taxas de "liberação".</p>
+                <div class="email-box">
+                    <b>Assunto:</b> Você ganhou US$ 1.000.000,00!<br>
+                    "E-mail selecionado para o prêmio anual. <font>Resgatar agora</font>"
+                </div>
+                <div class="alert-footer"><i class="fas fa-gift"></i><div>Se parece bom demais para ser verdade, é 100% golpe.</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        LOG_SESSION: 2026_SECURITY_PROTOCOL | DEVELOPED FOR TRAINING PURPOSES
+    </footer>
+
+</body>
+</html>

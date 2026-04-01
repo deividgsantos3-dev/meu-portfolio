@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Security Blueprint | 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #020408;
+            --bg-card: #0d1117;
+            --primary-cyan: #00d4ff;
+            --primary-purple: #a855f7;
+            --primary-green: #22c55e;
+            --primary-red: #f87171;
+            --text-main: #e6edf3;
+            --text-dim: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; padding-top: 70px; }
+
+        nav {
+            background: rgba(13, 17, 23, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(12px);
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-cyan); text-decoration: none; }
+        .logo span { color: var(--primary-purple); }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at top, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        header h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+        header p { color: var(--text-dim); margin-top: 10px; max-width: 800px; margin-left: auto; margin-right: auto; }
+
+        .dashboard-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px;
+        }
+
+        .section-title {
+            grid-column: 1 / -1;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--primary-cyan);
+            font-size: 1.2rem;
+            border-left: 4px solid var(--primary-cyan);
+            padding-left: 15px;
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            transition: 0.3s ease;
+        }
+
+        .card:hover { border-color: var(--primary-cyan); box-shadow: 0 0 20px rgba(0, 212, 255, 0.05); }
+
+        .card h3 { font-size: 1.1rem; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; color: #fff; }
+        .card h3 i { color: var(--primary-cyan); }
+
+        .vlan-list { list-style: none; }
+        .vlan-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .vlan-id { color: var(--primary-purple); font-weight: bold; }
+        .vlan-name { color: var(--text-main); }
+        .vlan-status { color: var(--primary-green); font-size: 0.7rem; }
+
+        .tech-stack {
+            background: #010409;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+        }
+        .tech-line { margin-bottom: 5px; color: var(--text-dim); }
+        .tech-line b { color: var(--primary-cyan); }
+
+        .tag { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; background: rgba(0, 212, 255, 0.1); color: var(--primary-cyan); border: 1px solid var(--primary-cyan); }
+
+        footer { text-align: center; padding: 60px; border-top: 1px solid var(--border-color); color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; }
+
+        .grid-2 { grid-column: span 2; }
+        @media (max-width: 900px) { .grid-2 { grid-column: span 1; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">SEC_<span>ARCH_v3.0</span></a>
+        <div style="font-size: 0.7rem; color: var(--primary-green);"><i class="fas fa-shield-alt"></i> INFRASTRUCTURE: HARDENED</div>
+    </nav>
+
+    <header>
+        <h1>Configuração de Segurança <span>Multinacional</span></h1>
+        <p>Projeto técnico para 200 funcionários, 50 servidores e 180 câmeras IP. Foco em Zero Trust e Micro-segmentação de Perímetro.</p>
+    </header>
+
+    <div class="dashboard-container">
+
+        <div class="section-title">01. Arquitetura de Rede (VLAN Segmentation)</div>
+        
+        <div class="card grid-2">
+            <h3><i class="fas fa-network-wired"></i> Matriz de VLANs e Controle de Tráfego</h3>
+            <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px;">Segregação física e lógica de Camada 2 para impedir movimentação lateral.</p>
+            <div class="vlan-list">
+                <div class="vlan-item"><span class="vlan-id">V10</span> <span class="vlan-name">MGMT_CORE (Infra/Switches)</span> <span class="vlan-status">PROTECTED</span></div>
+                <div class="vlan-item"><span class="vlan-id">V20</span> <span class="vlan-name">SERVERS_PROD (Datacenter)</span> <span class="vlan-status">ISOLATED</span></div>
+                <div class="vlan-item"><span class="vlan-id">V40</span> <span class="vlan-name">IOT_CAMERAS (180 Cam IP)</span> <span class="vlan-status">NO_INTERNET</span></div>
+                <div class="vlan-item"><span class="vlan-id">V60</span> <span class="vlan-name">FACILITIES (Ar/Acesso/Ponto)</span> <span class="vlan-status">RESTRICTED</span></div>
+                <div class="vlan-item"><span class="vlan-id">V99</span> <span class="vlan-name">TI_ADMIN (Full Control)</span> <span class="vlan-status">ENCRYPTED</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-wifi"></i> Gestão de Wi-Fi</h3>
+            <p>Implementação de WPA3-Enterprise com RADIUS.</p>
+            <div class="tech-stack">
+                <div class="tech-line"><b>SSID_CORP:</b> 802.1X Auth (AD)</div>
+                <div class="tech-line"><b>SSID_GUEST:</b> Client Isolation + Web Filter</div>
+                <div class="tech-line"><b>CERT:</b> Device-Based Certificates</div>
+            </div>
+        </div>
+
+        <div class="section-title">02. Proteção de Dados e Endpoints</div>
+
+        <div class="card">
+            <h3><i class="fas fa-laptop"></i> Notebooks e Estações</h3>
+            <p>Proteção para as 250 unidades (Local & Remote).</p>
+            <ul style="font-size: 0.85rem; color: var(--text-dim); padding-left: 20px;">
+                <li><b>EDR:</b> Detecção comportamental pró-ativa.</li>
+                <li><b>DISK:</b> AES-256 BitLocker (GPO Managed).</li>
+                <li><b>USB:</b> Portas bloqueadas via Policy.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-hdd"></i> Storages e Backups</h3>
+            <p>Resiliência para os 4 Storages corporativos.</p>
+            <div class="tech-stack">
+                <div class="tech-line"><b>SNAPSHOTS:</b> Immutable (Anti-Ransom)</div>
+                <div class="tech-line"><b>STORAGE_NET:</b> Dedicated SAN VLAN</div>
+                <div class="tech-line"><b>AUTH:</b> AD Integration + ACLs</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-id-card"></i> Identidade e Acessos (IAM)</h3>
+            <p>Controle por setor (RH, Financeiro, Terceiros).</p>
+            <div class="tech-stack">
+                <div class="tech-line"><b>MFA:</b> Mandatário para todos os acessos</div>
+                <div class="tech-line"><b>VPN:</b> Zero Trust Network Access (ZTNA)</div>
+                <div class="tech-line"><b>AUDIT:</b> Logs de acesso via SIEM</div>
+            </div>
+        </div>
+
+        <div class="section-title">03. Câmeras e Sistemas de Terceiros</div>
+
+        <div class="card grid-2">
+            <h3><i class="fas fa-video"></i> Hardening de CFTV (180 Câmeras)</h3>
+            <p>Blindagem de sistemas de monitoramento contra invasões externas.</p>
+            <div class="tech-stack">
+                <div class="tech-line"><b>GATEWAY:</b> Desativado (Sem saída externa direta)</div>
+                <div class="tech-line"><b>SERVICES:</b> Telnet/UPnP/ONVIF <b>[DISABLED]</b></div>
+                <div class="tech-line"><b>RECORDING:</b> Centralizado em NVR dedicado na VLAN 40</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3><i class="fas fa-users-cog"></i> Gestão de Terceiros</h3>
+            <p>Acesso restrito para manutenção e serviços.</p>
+            <ul style="font-size: 0.85rem; color: var(--text-dim); padding-left: 20px;">
+                <li><b>PORTAL:</b> VPN Clientless (HTML5).</li>
+                <li><b>SESSION:</b> Gravação de tela para auditoria.</li>
+                <li><b>TIME:</b> Acesso expira automaticamente.</li>
+            </ul>
+        </div>
+
+        <div class="section-title">04. Stack Recomendada (Security Stack)</div>
+
+        <div class="card grid-2">
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <span class="tag">Firewall: FortiGate / Palo Alto</span>
+                <span class="tag">EDR: CrowdStrike / SentinelOne</span>
+                <span class="tag">SIEM: Wazuh / Splunk</span>
+                <span class="tag">Identity: Microsoft Entra ID (MFA)</span>
+                <span class="tag">WAF: Cloudflare / F5</span>
+                <span class="tag">Backup: Veeam Immutable Repos</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        LOG_SESSION: 2026_ENTERPRISE_HARDENING | ARCHITECT: DEIVID_G_SANTOS | LEVEL: TECH_LEAD
+    </footer>
+
+</body>
+</html>

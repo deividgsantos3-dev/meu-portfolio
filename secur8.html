@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Web Incursion Matrix | Deep Net Risks</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #050505;
+            --bg-card: #0a0a0a;
+            --primary-dark: #8b5cf6; /* Roxo Profundo para Dark Web */
+            --primary-red: #ff0000;
+            --neon-green: #10b981;
+            --text-main: #d1d5db;
+            --text-dim: #6b7280;
+            --border-color: #1a1a1a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.5; padding-top: 60px; }
+
+        nav {
+            background: rgba(5, 5, 5, 0.98);
+            border-bottom: 2px solid var(--primary-dark);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-dark); text-decoration: none; text-shadow: 0 0 10px rgba(139, 92, 246, 0.5); }
+        
+        header {
+            text-align: center;
+            padding: 100px 20px 40px;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.15) 0%, transparent 100%);
+        }
+
+        header h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        header h1 span { color: var(--primary-dark); }
+        header p { color: var(--text-dim); margin-top: 10px; font-size: 0.9rem; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+        .main-grid {
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 25px;
+            position: relative;
+            transition: all 0.4s;
+            border-left: 2px solid var(--primary-dark);
+        }
+
+        .card:hover { border-color: var(--primary-dark); box-shadow: 0 0 30px rgba(139, 92, 246, 0.1); transform: translateY(-5px); }
+
+        .card h3 { font-size: 1.1rem; margin-bottom: 12px; color: #fff; font-family: 'JetBrains Mono', monospace; }
+        .card p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 18px; }
+
+        .exploit-box {
+            background: #000;
+            padding: 15px;
+            border-radius: 2px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            border: 1px solid #1f1f1f;
+        }
+
+        .exploit-box b { color: var(--primary-red); }
+        .exploit-box i { color: var(--neon-green); font-style: normal; }
+
+        .tag-status { font-size: 0.6rem; position: absolute; top: 10px; right: 10px; padding: 2px 6px; background: rgba(255, 0, 0, 0.1); color: var(--primary-red); border: 1px solid var(--primary-red); text-transform: uppercase; }
+
+        footer { text-align: center; padding: 60px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; border-top: 1px solid var(--border-color); }
+    </style>
+	<style>
+        :root {
+            --bg-dark: #020203;
+            --bg-card: #08080a;
+            --primary-purple: #7c3aed;
+            --alert-red: #dc2626;
+            --monitor-green: #10b981;
+            --text-main: #d1d5db;
+            --border-glow: #1e1b4b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; padding-top: 60px; }
+
+        nav {
+            background: rgba(2, 2, 3, 0.9);
+            border-bottom: 1px solid var(--primary-purple);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; color: var(--primary-purple); font-weight: 700; text-decoration: none; }
+
+        header {
+            text-align: center;
+            padding: 80px 20px 30px;
+            background: radial-gradient(circle at center, rgba(124, 58, 237, 0.1) 0%, transparent 80%);
+        }
+
+        header h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: #fff; }
+        header span { color: var(--primary-purple); }
+
+        .grid-layout {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid #1a1a1c;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .card:hover { border-color: var(--primary-purple); box-shadow: 0 0 15px rgba(124, 58, 237, 0.2); }
+
+        .card-header {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--monitor-green);
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card h3 { font-size: 1rem; color: #fff; margin-bottom: 10px; }
+        .card p { font-size: 0.85rem; color: #9ca3af; line-height: 1.4; margin-bottom: 15px; }
+
+        .tech-detail {
+            background: #000;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--alert-red);
+        }
+
+        .tech-detail b { color: var(--alert-red); }
+        .risk-level { font-size: 0.6rem; padding: 2px 6px; border: 1px solid var(--alert-red); color: var(--alert-red); border-radius: 4px; }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid #1a1a1c; color: #4b5563; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">VOID_<span>NAVIGATOR_v4</span></a>
+        <div style="font-size: 0.7rem; color: var(--neon-green);"><i class="fas fa-terminal"></i> CONNECTION: TOR_RELAY_ACTIVE</div>
+    </nav>
+
+    <header>
+        <h1>Deep Web & <span>Dark Web</span></h1>
+        <p>Abaixo da superfície: Os riscos de infraestrutura, anonimato comprometido e exposição de hardware em redes não indexadas.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="tag-status">Traffic Leak</div>
+            <h3>Malicious Exit Nodes (Nós de Saída)</h3>
+            <p>Ao usar o Tor, seu tráfego passa por voluntários. Um "nó de saída" malicioso pode ler tudo o que você envia se o site não tiver HTTPS.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Traffic Sniffing em Exit Relay.<br>
+                <i>RISCO:</i> Captura de credenciais e dados em texto plano.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Data Mining</div>
+            <h3>VPNs "Grátis" para Deep Web</h3>
+            <p>Navegadores que prometem acesso fácil com "VPN Integrada" costumam ser Honey Pots (armadilhas) que coletam seu IP real e vendem seus dados.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Browser Log Fingerprinting.<br>
+                <i>RISCO:</i> Exposição do seu IP real e localização.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Tracking</div>
+            <h3>Browser Fingerprinting</h3>
+            <p>Sites na Dark Web usam scripts avançados para identificar a resolução da sua tela, fontes instaladas e hardware, criando um ID único seu.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Canvas/WebGL Identification.<br>
+                <i>RISCO:</i> Desanonimização persistente do seu computador.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Critical</div>
+            <h3>JavaScript Exploits (Zero-Day)</h3>
+            <p>Muitos sites .onion carregam scripts que exploram falhas no motor do navegador para executar código direto no seu sistema operacional.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Remote Code Execution (RCE).<br>
+                <i>RISCO:</i> Controle total do seu PC pelo atacante.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Financial</div>
+            <h3>Marketplace Scams & Phishing</h3>
+            <p>90% dos fóruns de venda na Dark Web são clones criados apenas para roubar Bitcoins de usuários curiosos.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Crypto Wallet Hijacking.<br>
+                <i>RISCO:</i> Perda financeira irreversível (Sem estorno).
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Legal Risk</div>
+            <h3>Honey Pots (Autoridades)</h3>
+            <p>Fóruns mantidos por agências de inteligência para monitorar quem acessa conteúdos ilegais, rastreando usuários por meses.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Long-term Metadata Analysis.<br>
+                <i>RISCO:</i> Implicação em investigações criminais.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Privacy</div>
+            <h3>Acesso ao Periférico</h3>
+            <p>Scripts que tentam ativar sua webcam ou microfone silenciosamente assim que um link .onion é aberto no navegador sem proteção.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Peripheral Plugin Exploit.<br>
+                <i>RISCO:</i> Chantagem e exposição de imagens íntimas.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Metadata</div>
+            <h3>Leaking via Arquivos</h3>
+            <p>Baixar ou subir documentos em fóruns obscuros sem limpar metadados pode revelar o nome do seu usuário do Windows e o ID do seu HD.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> EXIF/NTFS Metadata Leak.<br>
+                <i>RISCO:</i> Identificação física do autor do arquivo.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Infection</div>
+            <h3>Falsos Visualizadores de PDF</h3>
+            <p>Documentos que exigem download de um "visualizador especial" para serem lidos, que na verdade é um trojan de acesso remoto (RAT).</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Dropper Malware.<br>
+                <i>RISCO:</i> Espionagem contínua via Keylogger.
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="tag-status">Leak</div>
+            <h3>IPv6 Leakage</h3>
+            <p>Muitas configurações de VPN ou Tor falham em mascarar o IPv6, deixando seu endereço de rede real visível para o servidor .onion.</p>
+            <div class="exploit-box">
+                <b>VETOR:</b> Improper Tunnel Configuration.<br>
+                <i>RISCO:</i> Quebra total do túnel de anonimato.
+            </div>
+        </div>
+		
+		 <div class="card">
+            <div class="card-header">REF: #PF-MONITOR <span class="risk-level">CRITICAL</span></div>
+            <h3>Nós de Saída Controlados (PF/FBI)</h3>
+            <p>Agências de segurança operam milhares de nós do Tor para interceptar tráfego e identificar a origem de usuários.</p>
+            <div class="tech-detail"><b>VETOR:</b> De-anonymization Relay.<br><i>ALVO:</i> IP Real do Usuário.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #HONEY-POT <span class="risk-level">HIGH</span></div>
+            <h3>Fóruns Honey Pot</h3>
+            <p>Sites de serviços ilegais criados pela polícia para coletar logs de quem entra, o que busca e o que escreve.</p>
+            <div class="tech-detail"><b>VETOR:</b> Database Logging.<br><i>ALVO:</i> Perfilamento criminal.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #NIT-ATTACK <span class="risk-level">CRITICAL</span></div>
+            <h3>Network Investigative Techniques</h3>
+            <p>Malwares enviados via navegador pela polícia que forçam o seu computador a enviar o seu IP real para um servidor central.</p>
+            <div class="tech-detail"><b>VETOR:</b> Government Malware (NIT).<br><i>ALVO:</i> Localização Física.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #HW-ID <span class="risk-level">MEDIUM</span></div>
+            <h3>Extração de MAC Address</h3>
+            <p>Scripts em sites .onion que exploram falhas de áudio/vídeo para ler o endereço físico da sua placa de rede.</p>
+            <div class="tech-detail"><b>VETOR:</b> Hardware Leaking.<br><i>ALVO:</i> Identificação única do PC.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #CORRELATION <span class="risk-level">HIGH</span></div>
+            <h3>Ataques de Correlação</h3>
+            <p>Monitoramento do tempo de entrada e saída de dados no seu roteador doméstico para bater com o tráfego na Dark Web.</p>
+            <div class="tech-detail"><b>VETOR:</b> Traffic Analysis.<br><i>ALVO:</i> Quebra de anonimato Tor.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #JS-EXPLOIT <span class="risk-level">CRITICAL</span></div>
+            <h3>Exploits de JavaScript Ativos</h3>
+            <p>Navegar com JS ativado permite que sites executem comandos que revelam o nome do seu usuário no Windows.</p>
+            <div class="tech-detail"><b>VETOR:</b> RCE (Remote Code Execution).<br><i>ALVO:</i> Arquivos do Sistema Operacional.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #VPN-LOGS <span class="risk-level">HIGH</span></div>
+            <h3>VPNs com "Backdoor"</h3>
+            <p>Muitas VPNs que prometem anonimato têm acordos de cooperação com a Polícia Federal para entregar logs em tempo real.</p>
+            <div class="tech-detail"><b>VETOR:</b> Log Handover.<br><i>ALVO:</i> Histórico de navegação.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #METADATA <span class="risk-level">MEDIUM</span></div>
+            <h3>Vazamento por Metadados de Imagem</h3>
+            <p>Ao postar ou enviar uma foto, metadados (EXIF) podem revelar a marca do celular e coordenadas GPS exatas.</p>
+            <div class="tech-detail"><b>VETOR:</b> EXIF Data Leak.<br><i>ALVO:</i> Geolocalização doméstica.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #BROWSER-FP <span class="risk-level">MEDIUM</span></div>
+            <h3>Impressão Digital do Navegador</h3>
+            <p>A combinação da sua versão de sistema, fontes e resolução cria uma assinatura que te persegue em todos os sites.</p>
+            <div class="tech-detail"><b>VETOR:</b> Canvas Fingerprinting.<br><i>ALVO:</i> Rastreamento persistente.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #CRYPTO-TRACE <span class="risk-level">HIGH</span></div>
+            <h3>Rastreamento de Blockchain</h3>
+            <p>Empresas de segurança analisam transações de Bitcoin para ligar carteiras anônimas a contas de corretoras (KYC).</p>
+            <div class="tech-detail"><b>VETOR:</b> Ledger Analysis.<br><i>ALVO:</i> Identidade financeira.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #DNS-LEAK <span class="risk-level">MEDIUM</span></div>
+            <h3>Vazamento de DNS</h3>
+            <p>Mesmo no Tor, seu computador pode tentar resolver endereços via DNS da sua operadora (Vivo/Claro), revelando o site visitado.</p>
+            <div class="tech-detail"><b>VETOR:</b> DNS Leakage.<br><i>ALVO:</i> Logs da Operadora.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #PHISHING-CLONE <span class="risk-level">HIGH</span></div>
+            <h3>Clones de Mercados Ocultos</h3>
+            <p>Versões falsas de sites famosos que roubam sua chave privada e senhas assim que você tenta logar.</p>
+            <div class="tech-detail"><b>VETOR:</b> Credential Harvesting.<br><i>ALVO:</i> Acesso a contas e fundos.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #VM-ESCAPE <span class="risk-level">CRITICAL</span></div>
+            <h3>Fuga de Máquina Virtual (VM Escape)</h3>
+            <p>Malwares avançados que conseguem "pular" da VM infectada para o seu computador real (Host).</p>
+            <div class="tech-detail"><b>VETOR:</b> Hypervisor Exploit.<br><i>ALVO:</i> Sistema Host e Rede Local.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #WEB-RTC <span class="risk-level">MEDIUM</span></div>
+            <h3>Vulnerabilidade WebRTC</h3>
+            <p>Protocolos de chat de vídeo que podem vazar o seu IP local (192.168.x.x) mesmo atrás de uma VPN.</p>
+            <div class="tech-detail"><b>VETOR:</b> STUN/TURN Request.<br><i>ALVO:</i> Estrutura de rede interna.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #FILE-TRIGGER <span class="risk-level">HIGH</span></div>
+            <h3>Arquivos "Beacon" (PDF/DOCX)</h3>
+            <p>Arquivos que, ao serem abertos *offline*, tentam fazer uma conexão externa para avisar ao dono onde você está.</p>
+            <div class="tech-detail"><b>VETOR:</b> External Resource Injection.<br><i>ALVO:</i> IP e Horário de acesso.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #CSS-TRACKING <span class="risk-level">LOW</span></div>
+            <h3>Rastreamento via CSS</h3>
+            <p>Uso de folhas de estilo para carregar imagens invisíveis que confirmam o seu tamanho de tela e tipo de dispositivo.</p>
+            <div class="tech-detail"><b>VETOR:</b> CSS Injection.<br><i>ALVO:</i> Perfilamento técnico.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #STYLOMETRY <span class="risk-level">HIGH</span></div>
+            <h3>Análise de Estilometria</h3>
+            <p>Sistemas de IA que analisam o seu jeito de escrever para comparar com seus posts em redes sociais abertas.</p>
+            <div class="tech-detail"><b>VETOR:</b> Linguistic Pattern Matching.<br><i>ALVO:</i> Identidade real do autor.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #ISP-BLOCK <span class="risk-level">MEDIUM</span></div>
+            <h3>Monitoramento de Início de Fluxo Tor</h3>
+            <p>Sua operadora sabe que você está usando o Tor. Isso por si só pode colocar seu IP em uma lista de monitoramento.</p>
+            <div class="tech-detail"><b>VETOR:</b> Deep Packet Inspection (DPI).<br><i>ALVO:</i> Flag de "Usuário Suspeito".</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #TIME-ANALYSIS <span class="risk-level">MEDIUM</span></div>
+            <h3>Análise de Fuso Horário</h3>
+            <p>Scripts que checam a diferença entre o relógio do seu sistema e o relógio do servidor para estimar seu país.</p>
+            <div class="tech-detail"><b>VETOR:</b> Clock Skew / Timezone Leak.<br><i>ALVO:</i> Localização geográfica.</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">REF: #HIDDEN-SERVICE <span class="risk-level">CRITICAL</span></div>
+            <h3>Vulnerabilidades de Servidores .onion</h3>
+            <p>Se você hospeda um site, falhas no Apache/Nginx podem revelar o IP do servidor, levando a PF direto ao seu endereço.</p>
+            <div class="tech-detail"><b>VETOR:</b> Server-Side Misconfiguration.<br><i>ALVO:</i> Localização do servidor físico.</div>
+        </div>
+
+    </div>
+
+    <footer>
+        ONION_AUDIT_2026 | ENTER_THE_VOID | DEIVID_G_SANTOS | TECH_LEAD_INSIGHT
+    </footer>
+
+</body>
+</html>

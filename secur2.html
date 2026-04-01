@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Vulnerability Matrix | IoT & Facilities</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-body: #0a0c10;
+            --bg-card: #161b22;
+            --primary-orange: #f97316;
+            --primary-red: #ef4444;
+            --accent-cyan: #22d3ee;
+            --text-main: #f0f6fc;
+            --text-dim: #8b949e;
+            --border-color: #30363d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg-body); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.4; padding-top: 60px; }
+
+        nav {
+            background: rgba(22, 27, 34, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            padding: 10px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--primary-orange); text-decoration: none; font-size: 1rem; }
+
+        header {
+            text-align: center;
+            padding: 60px 20px 30px;
+            background: radial-gradient(circle at top, rgba(249, 115, 22, 0.1) 0%, transparent 60%);
+        }
+
+        header h1 { font-size: 2rem; font-weight: 900; text-transform: uppercase; }
+        header h1 span { color: var(--primary-orange); }
+        header p { color: var(--text-dim); font-size: 0.9rem; margin-top: 10px; }
+
+        .main-grid {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+            transition: 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { border-color: var(--primary-orange); transform: scale(1.01); }
+
+        .card-header {
+            background: rgba(249, 115, 22, 0.05);
+            padding: 10px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body { padding: 20px; flex-grow: 1; }
+        .card-body h3 { font-size: 1.1rem; margin-bottom: 10px; color: var(--accent-cyan); }
+        .card-body p { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px; }
+
+        .tech-data {
+            background: #0d1117;
+            padding: 12px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            border-left: 3px solid var(--primary-orange);
+            margin-bottom: 15px;
+        }
+
+        .tech-data b { color: var(--primary-red); }
+        .tech-data span { color: #58a6ff; }
+
+        .impact-tag {
+            font-size: 0.7rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--primary-red);
+            border: 1px solid var(--primary-red);
+        }
+
+        footer { text-align: center; padding: 40px; border-top: 1px solid var(--border-color); font-size: 0.7rem; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+
+        @media (max-width: 768px) { .main-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">FACILITIES_<span>VULN_SCAN</span></a>
+        <div style="font-size: 0.7rem;">SENSOR: <span style="color: var(--primary-orange);">ONLINE</span></div>
+    </nav>
+
+    <header>
+        <h1>Sistemas Paralelos e <span>Terceiros</span></h1>
+        <p>Análise de vetores de intrusão via dispositivos de monitoramento, automação predial e serviços externos.</p>
+    </header>
+
+    <div class="main-grid">
+
+        <div class="card">
+            <div class="card-header">ID: #01 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Câmeras IP (DVR/NVR)</h3>
+                <p>Equipamentos de CFTV com senhas padrão (admin/1234) e firmwares desatualizados que permitem acesso via Telnet/HTTP.</p>
+                <div class="tech-data">
+                    <span>EXPLOIT:</span> Remote Code Execution (RCE)<br>
+                    <span>ACCESS:</span> Pivot to Internal Network
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #02 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Controle de Acesso Biométrico</h3>
+                <p>Terminais de ponto e biometria que armazenam credenciais em bancos de dados SQL sem criptografia.</p>
+                <div class="tech-data">
+                    <span>DATABASE:</span> SQLite / Access<br>
+                    <span>VULN:</span> Credential Extraction
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #03 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Ar-Condicionado / HVAC</h3>
+                <p>Sistemas de refrigeração industrial conectados à rede para gestão remota via protocolos inseguros (BACnet/Modbus).</p>
+                <div class="tech-data">
+                    <span>PROTO:</span> BACnet (UDP 47808)<br>
+                    <span>VULN:</span> Unauthenticated Control
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #04 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>No-Breaks (UPS) Inteligentes</h3>
+                <p>Placas de gerenciamento SNMP em UPS que permitem desligar servidores remotamente se a senha 'public' estiver ativa.</p>
+                <div class="tech-data">
+                    <span>SERVICE:</span> SNMP v1/v2c<br>
+                    <span>ATTACK:</span> Denial of Service (DoS)
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #05 <span class="impact-tag">MEDIUM</span></div>
+            <div class="card-body">
+                <h3>Smart TVs em Salas de Reunião</h3>
+                <p>Televisores com microfones e câmeras ativos, conectados ao Wi-Fi corporativo com vulnerabilidades de navegador.</p>
+                <div class="tech-data">
+                    <span>VECTOR:</span> Browser Exploit<br>
+                    <span>RISK:</span> Corporate Espionage
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #06 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Gateways de Automação (IoT)</h3>
+                <p>Hubs que conectam sensores de iluminação e presença, muitas vezes instalados por empresas de engenharia elétrica sem auditoria de TI.</p>
+                <div class="tech-data">
+                    <span>OS:</span> Embedded Linux (Old Kernel)<br>
+                    <span>ACCESS:</span> Persistence (Backdoor)
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #07 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Impressoras de Crachás</h3>
+                <p>Dispositivos de terceiros que costumam ter interfaces web abertas e permitem o download de bancos de dados de funcionários.</p>
+                <div class="tech-data">
+                    <span>VULN:</span> Directory Traversal<br>
+                    <span>DATA:</span> PII (Personal Info) Leak
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #08 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Sensores de Incêndio (Fire Alarm)</h3>
+                <p>Painéis de alarme que integram com a rede para avisos externos, mas que podem ser usados para movimentação lateral.</p>
+                <div class="tech-data">
+                    <span>INTERFACE:</span> Serial-to-Ethernet<br>
+                    <span>ATTACK:</span> Network Sniffing
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #09 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>VPN de Suporte do Fabricante</h3>
+                <p>Túneis VPN permanentes deixados abertos para que o fornecedor de máquinas industriais faça manutenção remota.</p>
+                <div class="tech-data">
+                    <span>TYPE:</span> Unmonitored Site-to-Site<br>
+                    <span>RISK:</span> Third-Party Compromise
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #10 <span class="impact-tag">MEDIUM</span></div>
+            <div class="card-body">
+                <h3>Totens de Autoatendimento</h3>
+                <p>Quiosques para visitantes que rodam Windows e permitem o "Escape" da aplicação para acessar o CMD do sistema.</p>
+                <div class="tech-data">
+                    <span>VECTOR:</span> Kiosk Breakout<br>
+                    <span>PRIV:</span> Local Administrator
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #11 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Máquinas de Café / Vending Machines</h3>
+                <p>Dispositivos IoT conectados para telemetria de estoque que servem de entrada para scanners de rede.</p>
+                <div class="tech-data">
+                    <span>NETWORK:</span> Guest Wi-Fi Bridge<br>
+                    <span>TOOL:</span> Port Scanning
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #12 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Controladores Lógicos (PLC)</h3>
+                <p>Sistemas em linhas de produção que não exigem autenticação para alteração de parâmetros críticos.</p>
+                <div class="tech-data">
+                    <span>PROTO:</span> Modbus TCP (502)<br>
+                    <span>IMPACT:</span> Physical Sabotage
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #13 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Telefonia IP (VoIP)</h3>
+                <p>Aparelhos de telefone em mesas que podem sofrer interceptação de áudio se o protocolo SIP não for criptografado.</p>
+                <div class="tech-data">
+                    <span>ATTACK:</span> Eavesdropping<br>
+                    <span>DECODING:</span> RTP Stream Capture
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #14 <span class="impact-tag">MEDIUM</span></div>
+            <div class="card-body">
+                <h3>Relógios Digitais de Rede (NTP)</h3>
+                <p>Displays de hora sincronizados que utilizam versões vulneráveis de serviços de rede.</p>
+                <div class="tech-data">
+                    <span>CVE:</span> NTP Amplification<br>
+                    <span>USE:</span> DDoS Reflection
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #15 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Geradores de Energia (Backups)</h3>
+                <p>Sistemas de monitoramento de combustível e status de geradores acessíveis via web sem HTTPS.</p>
+                <div class="tech-data">
+                    <span>VULN:</span> Clear-text Credentials<br>
+                    <span>IMPACT:</span> Infrastructure Shutdown
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #16 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Elevadores Inteligentes</h3>
+                <p>Sistemas de chamada de elevadores integrados ao controle de acesso que utilizam APIs mal protegidas.</p>
+                <div class="tech-data">
+                    <span>VECTOR:</span> API Manipulation<br>
+                    <span>RESULT:</span> Floor Access Bypass
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #17 <span class="impact-tag">MEDIUM</span></div>
+            <div class="card-body">
+                <h3>Painéis Solares / Inversores</h3>
+                <p>Gestão de energia fotovoltaica com dashboards na nuvem que, se invadidos, revelam a topologia da rede local.</p>
+                <div class="tech-data">
+                    <span>DATA:</span> Network Topology Leak<br>
+                    <span>RISK:</span> Cloud-to-Ground Pivot
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #18 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Sistemas de Som / Paging</h3>
+                <p>Auto-falantes IP usados para anúncios que podem ser hackeados para emitir áudios falsos ou pânico.</p>
+                <div class="tech-data">
+                    <span>TYPE:</span> Unauthenticated Audio Inject<br>
+                    <span>IMPACT:</span> Social Engineering
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #19 <span class="impact-tag">CRITICAL</span></div>
+            <div class="card-body">
+                <h3>Pontos de Carregamento EV</h3>
+                <p>Estações de recarga de carros elétricos no estacionamento conectadas à extranet da empresa.</p>
+                <div class="tech-data">
+                    <span>PROTO:</span> OCPP<br>
+                    <span>VULN:</span> Lack of Encryption
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">ID: #20 <span class="impact-tag">HIGH</span></div>
+            <div class="card-body">
+                <h3>Frigobares Inteligentes (Executivos)</h3>
+                <p>Dispositivos de luxo em salas de diretoria com conexão Wi-Fi para controle de estoque de bebidas.</p>
+                <div class="tech-data">
+                    <span>HARDWARE:</span> Generic Wi-Fi Chips<br>
+                    <span>RISK:</span> Entry Point to Boardroom Net
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        AUDIT_DATE: 2026-03-31 | SECURE_YOUR_FACILITIES | DEIVID_G_SANTOS
+    </footer>
+
+</body>
+</html>
