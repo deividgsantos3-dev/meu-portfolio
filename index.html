@@ -438,57 +438,8 @@ e proteção de endpoints contra exploração de vulnerabilidades modernas.
     Participação ativa na definição de arquitetura, segurança de aplicações e estabilidade de ambientes produtivos.
 </p>
                 </div>
-                <div class="cv-card">
-                    <div class="cv-card">
-    <p><strong>Criptografia Segura (AES-256 + HMAC)</strong></p>
-    <p style="font-size: 0.85rem; color: var(--text-dim); margin-top: 10px;">
-        Exemplo de implementação segura para proteção de dados sensíveis, utilizando criptografia simétrica com validação de integridade:
-    </p>
-
-<pre style="margin-top:15px; font-size:0.75rem; color:#94a3b8; overflow:auto;">
-<code>
-function encryptSecure($data, $key) {
-    $iv = random_bytes(openssl_cipher_iv_length('aes-256-cbc'));
-
-    $ciphertext = openssl_encrypt(
-        $data,
-        'aes-256-cbc',
-        $key,
-        OPENSSL_RAW_DATA,
-        $iv
-    );
-
-    $hmac = hash_hmac('sha256', $ciphertext, $key, true);
-
-    return base64_encode($iv . $hmac . $ciphertext);
-}
-
-function decryptSecure($payload, $key) {
-    $decoded = base64_decode($payload);
-
-    $ivLength = openssl_cipher_iv_length('aes-256-cbc');
-    $iv = substr($decoded, 0, $ivLength);
-    $hmac = substr($decoded, $ivLength, 32);
-    $ciphertext = substr($decoded, $ivLength + 32);
-
-    $calculatedHmac = hash_hmac('sha256', $ciphertext, $key, true);
-
-    if (!hash_equals($hmac, $calculatedHmac)) {
-        throw new Exception('Integridade comprometida');
-    }
-
-    return openssl_decrypt(
-        $ciphertext,
-        'aes-256-cbc',
-        $key,
-        OPENSSL_RAW_DATA,
-        $iv
-    );
-}
-</code>
-</pre>
-</div>
-                </div>
+                    
+                
             </section>
 
             <aside>
